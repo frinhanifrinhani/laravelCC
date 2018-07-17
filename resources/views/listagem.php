@@ -1,7 +1,14 @@
 <html>
+<header>
+    <link href="/css/app.css" rel="stylesheet">
+    <title>
+        Controle de estoque
+    </title>
+</header>
 <body>
+<div class="container">
 <h1>Listagem de produtos</h1>
-    <table>
+    <table class="table table-striped table-bordered table-hover">
     <?php 
 
     foreach ($produtos as $p): ?>
@@ -13,5 +20,6 @@
         </tr>
     <?php endforeach ?>
 </table>
+</div>
 </body>
 </html>
