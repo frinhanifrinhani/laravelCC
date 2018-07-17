@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +13,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        Model::unguard();
+        $this->call('ProdutoTableSeeder');
+    }
+    
+}
+
+class ProdutoTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::insert('insert into produtos 
+        (nome,quantidade,valor,descricao,created_at,updated_at)
+        values(?,?,?,?,?,?)',
+        array('Geladeira',2,5900.00,'Side by Side com gelo na porta',now(),now()));
+
+        DB::insert('insert into produtos 
+        (nome,quantidade,valor,descricao,created_at,updated_at)
+        values(?,?,?,?,?,?)',
+        array('Fogão',5,950.00,'Painel automático e forno elétrico',now(),now()));
+
+        DB::insert('insert into produtos 
+        (nome,quantidade,valor,descricao,created_at,updated_at)
+        values(?,?,?,?,?,?)',
+        array('Microondas',1,1520.00,'Manda SMS quando termina de esquentar',now(),now()));
     }
 }
