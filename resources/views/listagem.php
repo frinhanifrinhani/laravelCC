@@ -1,6 +1,7 @@
 <html>
 <header>
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    
     <title>
         Controle de estoque
     </title>
@@ -17,6 +18,13 @@
         <td><?= $p->valor ?> </td>
         <td><?= $p->descricao ?> </td>
         <td><?= $p->quantidade ?> </td>
+        <td>
+        <a href="/produtos/mostra?id=<?= $p->id ?>">
+        <span class="glyphicon glyphicon-search"></span>
+        </a>
+        </span>
+            
+        </td>
         </tr>
     <?php endforeach ?>
 </table>
