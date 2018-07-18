@@ -24,9 +24,10 @@ class ProdutoController extends Controller{
 		}
 	}
 
-	public function mostra(){
+	public function mostra($id){
 		//$id = Request::input('id');
-		$id = Request::input('id','0');
+		//$id = Request::input('id','0');
+		//$id = Request::route('id','0');
 		$resposta = 
 			DB::select('select * from estoque_laravel.produtos where id = ? ',[$id]);
 			//echo "<pre>";
