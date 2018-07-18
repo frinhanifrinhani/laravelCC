@@ -12,4 +12,4 @@ Route::get(
 	'ProdutoController@mostra'
 	)
 	->where('id','[0-9]+');
-	;
+	
