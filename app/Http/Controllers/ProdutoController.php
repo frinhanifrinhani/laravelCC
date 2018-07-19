@@ -18,8 +18,8 @@ class ProdutoController extends Controller{
 			$data = ['produtos' => $produtos];
 			return view('listagem',$data);
 		*/
-		if(view()->exists('listagem')){
-			return view('listagem')->withProdutos($produtos);
+		if(view()->exists('produto.listagem')){
+			return view('produto.listagem')->withProdutos($produtos);
 		}
 	}
 
@@ -34,7 +34,7 @@ class ProdutoController extends Controller{
 		if(empty($resposta)){
 			return "Esse produto não existe";
 		}
-		return view('detalhes')->with('p',$resposta[0]);
+		return view('produto.detalhes')->with('p',$resposta[0]);
 	}
 }
 
