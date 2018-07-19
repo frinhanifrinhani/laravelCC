@@ -1,6 +1,6 @@
 <html>
 <head>
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet"  type="text/css">
 <title>Controle de estoque</title>
 </head>
 <body>

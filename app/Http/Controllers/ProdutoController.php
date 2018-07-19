@@ -9,7 +9,7 @@ class ProdutoController extends Controller{
 	public function lista(){
 		
 		$produtos = DB::select('select * from estoque_laravel.produtos');
-
+		
 		//formas de retorno de para view
 		//return view('listagem')->with('produtos',$produtos);
 		//return view('listagem')->withProdutos($produtos);
