@@ -19,6 +19,9 @@
             <a href="{{action('ProdutoController@mostra',$p->id)}}">
                 <span class="glyphicon glyphicon-search"></span>
             </a>
+            <a href="{{action('ProdutoController@edita', $p->id)}}">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
             <a href="{{action('ProdutoController@remove', $p->id)}}">
                 <span class="glyphicon glyphicon-trash"></span>
             </a>

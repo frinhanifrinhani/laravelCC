@@ -30,8 +30,15 @@ class ProdutoController extends Controller{
 	}
 
 	public function adiciona(){
-		
-		Produto::create($Request::all());
+		if(!empty(Request::input('id'))){
+			$params = Request::all();
+			$id = Request::input('id');
+			$produto = Produto::find($id);
+			$produto->update($params);
+			
+		}else{
+			Produto::create(Request::all());
+		}
 
 		return redirect()
 			->action('ProdutoController@lista')
@@ -43,6 +50,15 @@ class ProdutoController extends Controller{
 		$produtos = Produto::all();
 
 		return response()->json($produtos);
+	}
+
+	public function edita($id){
+		$produto = Produto::find($id);
+		if(empty($produto)){
+			return "Esse produto não existe";
+		}
+
+		return view('produto.formulario_edita')->with('p',$produto);
 	}
 
 	public function remove($id){

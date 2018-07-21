@@ -26,3 +26,5 @@ Route::post(
 Route::get('/produtos/json','ProdutoController@listaJson');
 
 Route::get('/produtos/remove/{id}','ProdutoController@remove');
+
+Route::get('/produtos/edita/{id}','ProdutoController@edita');
