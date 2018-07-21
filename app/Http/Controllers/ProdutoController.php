@@ -54,8 +54,17 @@ class ProdutoController extends Controller{
 		array($nome,$valor,$quantidade,$descricao));
 
 
-		return view('produto.adicionado')->with('nome',$nome);
+		//return redirect('/produtos')
+		return redirect()
+			->action('ProdutosController@lista')
+			->withInput(Request::only('nome'));
 	
+	}
+
+	public function listaJson(){
+		$produtos = DB::select('select * from estoque_laravel.produtos');
+		//return $produtos;
+		return response()->json($produtos);
 	}
 }
 
