@@ -16,8 +16,11 @@
             <td>{{$p->descricao}} </td>
             <td>{{$p->quantidade}} </td>
             <td>
-            <a href="/produtos/mostra/{{$p->id}}"
-            <span class="glyphicon glyphicon-search"></span>
+            <a href="{{action('ProdutoController@mostra',$p->id)}}">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="{{action('ProdutoController@remove', $p->id)}}">
+                <span class="glyphicon glyphicon-trash"></span>
             </a>
             </span>
                 

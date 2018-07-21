@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     protected $table = 'estoque_laravel.produtos';
-    //
+    public $timestamps = false;
+
+    protected $fillable = array(
+        'nome',
+        'descricao',
+        'valor',
+        'quantidade'
+    );
+    
+    protected $guarded = ['id'];
 }

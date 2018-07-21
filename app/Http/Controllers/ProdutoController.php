@@ -1,40 +1,27 @@
 <?php
 	
 namespace estoque\Http\Controllers;
-use Illuminate\Support\Facades\DB;
+
+use estoque\Produto;
 use Request;
+use estoque\Http\Request\ProdutosRequest;
 
 class ProdutoController extends Controller{
 	
 	public function lista(){
-		
-		$produtos = DB::select('select * from estoque_laravel.produtos');
-		
-		//formas de retorno de para view
-		//return view('listagem')->with('produtos',$produtos);
-		//return view('listagem')->withProdutos($produtos);
-		//return view('listagem',['produtos' => $produtos]);
-		/*
-			$data = ['produtos' => $produtos];
-			return view('listagem',$data);
-		*/
+		$produtos = Produto::all();
 		if(view()->exists('produto.listagem')){
 			return view('produto.listagem')->withProdutos($produtos);
 		}
 	}
 
 	public function mostra($id){
-		//$id = Request::input('id');
-		//$id = Request::input('id','0');
-		//$id = Request::route('id','0');
-		$resposta = 
-			DB::select('select * from estoque_laravel.produtos where id = ? ',[$id]);
-			//echo "<pre>";
-			//var_dump($resposta);die;
-		if(empty($resposta)){
+		$produto = Produto::find($id);
+
+		if(empty($produto)){
 			return "Esse produto não existe";
 		}
-		return view('produto.detalhes')->with('p',$resposta[0]);
+		return view('produto.detalhes')->with('p',$produto);
 	}
 
 	public function novo(){
@@ -44,27 +31,26 @@ class ProdutoController extends Controller{
 
 	public function adiciona(){
 		
-		$nome 		= Request::input('nome');
-		$descricao	= Request::input('descricao');
-		$valor		= Request::input('valor');
-		$quantidade	= Request::input('quantidade');
+		Produto::create($Request::all());
 
-		DB::insert('insert into estoque_laravel.produtos 
-		(nome,valor,quantidade,descricao)values(?,?,?,?)',
-		array($nome,$valor,$quantidade,$descricao));
-
-
-		//return redirect('/produtos')
 		return redirect()
-			->action('ProdutosController@lista')
+			->action('ProdutoController@lista')
 			->withInput(Request::only('nome'));
 	
 	}
 
 	public function listaJson(){
-		$produtos = DB::select('select * from estoque_laravel.produtos');
-		//return $produtos;
+		$produtos = Produto::all();
+
 		return response()->json($produtos);
+	}
+
+	public function remove($id){
+		$produto = Produto::find($id);
+		$produto->delete();
+
+		return redirect()
+			->action('ProdutoController@lista');
 	}
 }
 
