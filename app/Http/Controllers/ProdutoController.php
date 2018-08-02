@@ -69,5 +69,4 @@ class ProdutoController extends Controller{
 			->action('ProdutoController@lista');
 	}
 }
-
 ?>
