@@ -2,6 +2,7 @@
 	
 namespace estoque\Http\Controllers;
 
+use Validator;
 use estoque\Produto;
 use Request;
 use estoque\Http\Request\ProdutosRequest;
@@ -30,15 +31,18 @@ class ProdutoController extends Controller{
 	}
 
 	public function adiciona(){
-		if(!empty(Request::input('id'))){
-			$params = Request::all();
-			$id = Request::input('id');
-			$produto = Produto::find($id);
-			$produto->update($params);
-			
-		}else{
-			Produto::create(Request::all());
+		
+		$validator = Validator::make(
+			['nome' => Request::input('nome')],
+			['nome' => 'required|min:5']
+
+		);
+		
+		if($validator->fails()){
+			return redirect()->action('ProdutoController@novo');
 		}
+
+		Produto::create(Request::all());
 
 		return redirect()
 			->action('ProdutoController@lista')
