@@ -7,8 +7,14 @@ use estoque\Produto;
 use Request;
 use estoque\Http\Requests\ProdutosRequest;
 
+
 class ProdutoController extends Controller{
-	
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	public function lista(){
 		$produtos = Produto::all();
 		if(view()->exists('produto.listagem')){

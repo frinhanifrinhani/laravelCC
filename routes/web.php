@@ -1,12 +1,5 @@
 <?php
-Route::get('/',function(){
-	return '<h1>Primeira lógica com Laravel</h1>';
-});
 
-Route::get('/produtos','ProdutoController@lista');
-
-//Route::get('/produtos/mostra','ProdutoController@mostra');
-//Route::get('/produtos/mostra/{id}','ProdutoController@mostra');
 Route::get(
 	'/produtos/mostra/{id}',
 	'ProdutoController@mostra'
@@ -28,3 +21,13 @@ Route::get('/produtos/json','ProdutoController@listaJson');
 Route::get('/produtos/remove/{id}','ProdutoController@remove');
 
 Route::get('/produtos/edita/{id}','ProdutoController@edita');
+
+Route::middleware([
+	'auth' => 'Auth/AuthController',
+	'password' => 'Auth/PasswordController',
+]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/produtos','ProdutoController@lista');
